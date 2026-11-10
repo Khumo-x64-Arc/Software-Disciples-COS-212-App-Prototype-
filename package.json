@@ -1,0 +1,21 @@
+{
+  "name": "cos212-graphs-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "COS212 Graphs & Transitive Closure e-learning app (React + Node.js, Java runner, no API keys)",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "setup": "npm --prefix server install && npm --prefix client install",
+    "build": "npm --prefix client run build",
+    "start": "node server/src/index.js",
+    "dev:server": "node --watch server/src/index.js",
+    "dev:client": "npm --prefix client run dev",
+    "test": "node server/test/runAll.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
