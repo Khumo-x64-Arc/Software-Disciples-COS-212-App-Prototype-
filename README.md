@@ -62,7 +62,8 @@ These are good for a classroom server but are **not** a security boundary. For a
 | L6 Introduction to BFS | BFS step by step with its queue |
 | L7 Introduction to DFS | DFS step by step with its stack, plus the queue-vs-stack checkpoint |
 | L8 Traversal walkthrough | Animated scenario: Naledi explores the campus from the Library (Play, Pause, speed, step, “predict the next building”) |
-| U5–U8 Transitive closure (bonus) | R⁺ prediction, Warshall’s k-by-k trace, repeated DFS vs Warshall, module prerequisites |
+| L9–L12 Transitive closure | R⁺ prediction, Warshall’s k-by-k trace, repeated DFS vs Warshall, module prerequisites |
+| (Bonus) Exam | Exam which tests all covered content |
 
 Transitive closure is **recommended** once a learner reaches Level 2 (Rookie, 200 points). It is never enforced.
 
