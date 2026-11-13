@@ -80,3 +80,4 @@ On first start the app adds **24 demo learners** so the lecturer dashboard has s
 - **Sign-in:** replace the pilot sign-in with UP single sign-on, and decide how long results are kept (the open questions in the design doc).
 - **Content review:** a tutor should review the knowledge-base cards and unit checks before launch.
 - **Accessibility testing:** run an accessibility review with real users, including screen-reader and colour-blind testers.
+-  **Java version:** check that the server's JDK version works with `javac --release 8`.
