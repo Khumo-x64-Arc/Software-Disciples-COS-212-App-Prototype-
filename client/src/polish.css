@@ -1,0 +1,255 @@
+/* =====================================================================
+   Visual polish layer (Nov 2026).
+   Loaded after styles.css and theme.css. Only changes how things look:
+   no layout logic, no colours below WCAG AA, and every animation is
+   switched off by Reduce motion or prefers-reduced-motion.
+   Delete this file (and its import in main.tsx) to go back.
+   ===================================================================== */
+
+:root {
+  --radius: 16px;
+  --card-grad: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0) 40%);
+  --ring: 0 0 0 1px rgba(94, 162, 255, 0.10);
+  --lift: 0 14px 34px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(26, 115, 255, 0.35);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- Page canvas ---------- */
+body {
+  background:
+    radial-gradient(900px 420px at 85% -120px, rgba(26, 115, 255, 0.16), transparent 70%),
+    radial-gradient(800px 380px at 0% 0%, rgba(195, 155, 255, 0.07), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1080px; padding: 1.6rem 1.4rem 2rem; }
+.container.wide { max-width: 1280px; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+
+/* The logo PNGs sit on solid black. "lighten" lets the black melt into
+   the page so the logo floats instead of sitting in a black box. */
+.welcome-logo, .hero-logo, .brand-mark { mix-blend-mode: lighten; filter: none; }
+.welcome { background: radial-gradient(420px 260px at 50% 200px, rgba(26, 115, 255, 0.16), transparent 70%); }
+
+/* ---------- Top bar ---------- */
+.topbar { padding: 0.6rem 1.4rem; gap: 1.2rem; }
+.brand-mark { height: 34px; }
+.topnav { gap: 0.25rem; }
+.topnav a { padding: 0.4rem 0.7rem; border-radius: 999px; border-bottom: 0; font-size: 0.94rem; transition: background 0.15s, color 0.15s; }
+.topnav a:hover { background: var(--surface); color: var(--ink); }
+.topnav a.active { background: var(--brand-soft); color: #fff; text-shadow: none; box-shadow: inset 0 0 0 1px rgba(26, 115, 255, 0.55); }
+.level-chip { border-radius: 14px; padding: 0.3rem 0.7rem; background: linear-gradient(135deg, var(--surface), var(--card)); }
+.level-chip-bar { width: 96px; height: 5px; }
+@media (max-width: 960px) {
+  .topnav a { border-radius: 10px; }
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card-grad), var(--card);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.4rem;
+  box-shadow: var(--ring), 0 10px 30px rgba(0, 0, 0, 0.32);
+}
+.card > h2:first-child, .card > h2:first-of-type { display: flex; align-items: center; gap: 0.5rem; }
+.page-title { font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0.2rem 0 0.4rem; }
+.page-title + .muted, .page-title + p { margin-top: 0.6rem; max-width: 70ch; }
+
+/* Shared hover lift for clickable cards */
+.tile, .lesson-card, .role-card, .video-card, .road-card, .asked-card {
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease), border-color 0.18s;
+}
+.tile:hover, .lesson-card:hover, .video-card:hover, a.road-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--lift);
+  border-color: var(--glow);
+}
+
+/* ---------- Buttons ---------- */
+button, .button { border-radius: 12px; transition: filter 0.15s, box-shadow 0.15s, transform 0.1s; }
+button:not(:disabled):active, .button:active { transform: translateY(1px); }
+button.secondary, .button.secondary { background: transparent; border-color: rgba(94, 162, 255, 0.55); }
+button.secondary:not(:disabled):hover, .button.secondary:hover { background: var(--brand-soft); filter: none; }
+.button.big, button.big { min-height: 52px; font-size: 1.05rem; letter-spacing: 0.01em; border-radius: 14px; }
+
+/* ---------- Welcome ---------- */
+.welcome { padding-top: 0.6rem; }
+.welcome-logo { width: min(500px, 100%); margin-top: -1rem; }
+.welcome-tag { margin-top: -0.6rem; letter-spacing: 0.04em; position: relative; }
+.welcome-title { font-size: clamp(1.9rem, 4.4vw, 2.8rem); margin-top: 1rem; }
+.role-cards { gap: 1.2rem; margin-top: 1.6rem; }
+.role-card {
+  position: relative; overflow: hidden; border-radius: 20px; padding: 1.6rem;
+  background: var(--card-grad), var(--card);
+  box-shadow: var(--ring), 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+.role-card::before {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 3px;
+  background: linear-gradient(90deg, var(--glow), #00c2ff);
+}
+.role-card + .role-card::before { background: linear-gradient(90deg, var(--alt), #7c5cff); }
+.role-icon {
+  width: 3.6rem; height: 3.6rem; display: grid; place-items: center; font-size: 2rem;
+  border-radius: 16px; background: var(--surface); border: 1px solid var(--line);
+}
+
+/* ---------- Home ---------- */
+.hero {
+  position: relative; overflow: hidden;
+  grid-template-columns: minmax(240px, 0.9fr) 1.1fr;
+  padding: 1.4rem 2rem; border-radius: 24px; margin-bottom: 1.2rem;
+  background:
+    radial-gradient(500px 260px at 100% 0%, rgba(26, 115, 255, 0.28), transparent 70%),
+    radial-gradient(var(--grid) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(135deg, #070d1c, #020308 65%);
+  box-shadow: inset 0 0 0 1px rgba(26, 115, 255, 0.25), 0 20px 50px rgba(0, 0, 0, 0.45);
+  border: 0;
+}
+.hero-title { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: 0.01em; }
+.hero-text .lead { color: var(--muted); max-width: 42ch; }
+.hero-text .button.big { width: auto; padding-inline: 2rem; margin-bottom: 0.4rem; }
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; text-align: center; padding: 1.2rem; }
+  .hero-logo { max-width: 300px; margin: 0 auto; }
+  .hero-text .lead { margin-inline: auto; }
+  .hero-text .button.big { width: 100%; }
+  .tile { min-height: 0; }
+}
+
+.home-grid { gap: 1.2rem; margin-bottom: 1.2rem; }
+.level-card { border-radius: 20px; padding: 1.3rem 1.4rem; border-color: rgba(26, 115, 255, 0.7); }
+.level-medal { width: 4.8rem; height: 4.8rem; }
+.level-card .progress { height: 10px; margin: 0.2rem 0 0.4rem; background: rgba(255, 255, 255, 0.06); }
+.level-ladder li { padding: 0.15rem 0.6rem; }
+
+.badge-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+.badge-tile { border-radius: 16px; padding: 0.7rem 0.4rem; transition: transform 0.18s var(--ease); }
+.badge-tile.earned:hover { transform: translateY(-2px) rotate(-1deg); }
+.badge-tile.locked { background: rgba(255, 255, 255, 0.02); }
+.badge-preview-note { margin: 0 0 0.7rem; }
+
+/* Mini roadmap: dots joined by a track so it reads as a path */
+.mini-road { gap: 0; margin: 0.8rem 0 0.6rem; }
+.mini-road li { position: relative; flex: 1 1 0; min-width: 3rem; display: flex; justify-content: center; }
+.mini-road li + li::before {
+  content: ''; position: absolute; top: 1.25rem; right: 50%; width: 100%; height: 2px;
+  background: var(--line); z-index: 0;
+}
+.mini-road li.done + li::before { background: var(--good); }
+.mini-road a { position: relative; z-index: 1; gap: 0.25rem; }
+.mini-road a:hover .mini-road-dot { border-color: var(--glow); }
+.mini-road-dot { background: var(--card); transition: border-color 0.15s, box-shadow 0.15s; }
+@media (max-width: 760px) { .mini-road { flex-wrap: wrap; row-gap: 0.6rem; } .mini-road li { flex: 0 0 3.2rem; } .mini-road li + li::before { display: none; } }
+
+.tile-grid { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
+.tile {
+  min-height: 150px; padding: 1.1rem; border-radius: 18px; gap: 0.35rem;
+  background: var(--card-grad), var(--card); box-shadow: var(--ring);
+  font: inherit; cursor: pointer;
+}
+button.tile { border: 1px solid var(--line); color: var(--ink); font-weight: 500; }
+.tile strong { font-family: var(--display); font-size: 1rem; }
+.tile .small { color: var(--muted); }
+.tile-icon {
+  width: 2.8rem; height: 2.8rem; display: grid; place-items: center; font-size: 1.45rem;
+  border-radius: 14px; background: var(--surface); border: 1px solid var(--line); margin-bottom: 0.35rem;
+}
+.tile-open .tile-icon { border-color: var(--good); background: var(--good-soft); }
+.tile-locked { opacity: 0.85; }
+
+/* ---------- Lessons list ---------- */
+.lesson-grid { gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.lesson-card {
+  padding: 1.05rem; border-radius: 18px; gap: 0.9rem;
+  background: var(--card-grad), var(--card); box-shadow: var(--ring);
+}
+.lesson-icon {
+  width: 3rem; height: 3rem; flex-shrink: 0; display: grid; place-items: center; font-size: 1.6rem;
+  border-radius: 14px; background: var(--surface); border: 1px solid var(--line);
+}
+.lesson-card.is-done .lesson-icon { border-color: var(--good); }
+.lesson-card-title { font-size: 1.02rem; line-height: 1.3; margin: 0.1rem 0 0.25rem; }
+.lesson-card-short { line-height: 1.45; }
+
+/* ---------- Lesson page ---------- */
+.lesson-head { align-items: center; margin-bottom: 0.6rem; }
+.lesson-head h1 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0.1rem 0 0.4rem; }
+.lesson-head-icon { border-radius: 20px; }
+.eyebrow { letter-spacing: 0.12em; }
+.key-ideas li { padding-left: 0.2rem; }
+.example { border-radius: 12px; padding: 0.8rem 1rem; }
+.step-num { width: 1.8rem; height: 1.8rem; display: inline-grid; place-items: center; border-radius: 50%; }
+
+/* Step player: keep the controls on one tidy row */
+.stepper .controls { gap: 0.4rem; flex-wrap: nowrap; }
+.stepper .controls button { min-height: 40px; padding: 0.3rem 0.7rem; white-space: nowrap; }
+.stepper .controls button[aria-label='First step'], .stepper .controls button[aria-label='Last step'] { padding: 0.3rem 0.55rem; }
+.step-count { white-space: nowrap; font-variant-numeric: tabular-nums; padding: 0 0.3rem; }
+@media (max-width: 520px) { .stepper .controls { flex-wrap: wrap; } }
+.step-note { border-radius: 12px; }
+
+/* Queue and visited chips read like tokens */
+.queue li, .heap-array li { border-radius: 10px; min-width: 2.2rem; justify-content: center; font-family: ui-monospace, Consolas, monospace; }
+
+/* Graph canvas */
+.gc-svg { border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(26, 115, 255, 0.08); }
+.gc-svg:not(.editable) { background: radial-gradient(circle at 50% 40%, #0b1426, var(--canvas) 70%); }
+
+/* ---------- Quiz ---------- */
+.quiz { border-radius: 20px; }
+.question-meta { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.prompt { font-size: 1.12rem; font-weight: 600; margin: 0.9rem 0 1rem; }
+.option { min-height: 52px; border-radius: 14px; padding: 0.6rem 0.9rem; transition: border-color 0.15s, background 0.15s, transform 0.1s; }
+.option:not(:disabled):hover { background: var(--brand-soft); filter: none; }
+.option-letter { min-width: 2rem; height: 2rem; }
+.option:not(:disabled):hover .option-letter { background: var(--brand); color: #fff; }
+.feedback { border-radius: 14px; padding: 0.9rem 1rem; }
+.dot { width: 12px; height: 12px; }
+
+/* ---------- Roadmap ---------- */
+.road-stop { margin-bottom: 0.55rem; align-items: center; }
+.road-card { padding: 0.7rem 1rem; border-radius: 14px; background: var(--card-grad), var(--card); }
+.road-card p { margin: 0.15rem 0 0; }
+.road-marker { background: var(--card); }
+
+/* ---------- Videos ---------- */
+.video-grid { gap: 1.2rem; }
+.video-card { border-radius: 18px; }
+.video-thumb {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(26, 115, 255, 0.35), transparent 55%),
+    radial-gradient(var(--grid) 1px, transparent 1px) 0 0 / 18px 18px,
+    linear-gradient(135deg, #0b1426, #04060b);
+}
+.video-play {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--brand); box-shadow: 0 0 0 6px rgba(26, 115, 255, 0.25), 0 0 30px rgba(26, 115, 255, 0.6);
+  transition: transform 0.18s var(--ease);
+}
+.video-card:hover .video-play { transform: translate(-50%, -50%) scale(1.08); }
+.video-text { padding: 0.9rem 1rem 1rem; }
+.video-title { font-family: var(--display); }
+
+/* ---------- Tables, tabs, forms ---------- */
+.tabs { gap: 0.3rem; }
+.tab { border-radius: 10px 10px 0 0; }
+.tab:hover { color: var(--ink); background: var(--surface); filter: none; }
+.matrix th, .matrix td { transition: background 0.2s; }
+.announce-bar { border-radius: 12px; }
+input[type='text'], input:not([type]), input[type='number'], input[type='password'], select, textarea { border-radius: 10px; }
+.toggle input { accent-color: var(--glow); }
+input[type='range'] { accent-color: var(--glow); }
+
+/* ---------- Chat button and footer ---------- */
+.chat-fab { border-radius: 999px; padding: 0.75rem 1.2rem; font-family: var(--display); }
+.site-footer { padding: 1.2rem 1.4rem 6rem; max-width: 1280px; }
+
+/* ---------- Motion off ---------- */
+html.reduced-motion *, html.reduced-motion *::before, html.reduced-motion *::after { transition: none !important; }
+html.reduced-motion .tile:hover, html.reduced-motion .lesson-card:hover, html.reduced-motion .video-card:hover { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+  .tile:hover, .lesson-card:hover, .video-card:hover, .badge-tile.earned:hover { transform: none; }
+}
