@@ -1,0 +1,12 @@
+# Render Blueprint: New > Blueprint, pick this repository.
+services:
+  - type: web
+    name: software-disciples-cos212
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: STAFF_CODE
+        sync: false        # Render asks for it; never use the default cos212-staff in public
+      - key: DATA_FILE
+        value: /tmp/cos212-db.json
