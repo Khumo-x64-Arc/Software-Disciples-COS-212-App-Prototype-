@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/Software Disciples Hooded Coding Emblem.png" alt="Software Disciples Logo" height="130">
+  <img src="docs/images/Software Disciples Hooded Coding Emblem.png" alt="Software Disciples Logo" height="200">
 </p>
 
 # Software Disciples · COS212 Graphs
