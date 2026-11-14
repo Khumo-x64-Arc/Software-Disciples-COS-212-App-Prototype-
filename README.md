@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/images/Software Disciples Hooded Coding Emblem.png" alt="Software Disciples Logo" height="130">
+</p>
+
 # Software Disciples · COS212 Graphs
 
 A playful e-learning app for COS212 that teaches **only** graph data structures, BFS and DFS, and transitive closure. It uses the Software Disciples look (black, electric blue, white, bold uppercase headings), follows Drozdek, *Data Structures and Algorithms in Java* (2010), and the COS212 graph slides, and maps every lesson to CS2023 AL-Foundational (CS core and KA core).
