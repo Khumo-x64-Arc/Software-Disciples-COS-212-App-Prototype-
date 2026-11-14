@@ -50,7 +50,7 @@ These are good for a classroom server but are **not** a security boundary. For a
 - Students start straight away as a guest: no sign-in, nothing locked. Signing in with a student number is optional (on the Student page or the start screen); it asks for POPIA consent first and keeps the guest’s points and work.
 - The Lecturer page asks for the staff code before it shows any class data. *Back to student mode* returns to the student session.
 
-**Lessons (8 core + 4 bonus).** Every lesson is open at any time. Each has *Learn* (goal, key ideas, an example and a clean reference such as “Drozdek (2010), Section 8.3.1, All-to-all shortest path problem, pages 390–392”), *Try it* (an activity) and a *Quiz*.
+**Lessons (one main path, L1–L12).** Part 1, graphs and traversal (L1–L8), then Part 2, transitive closure (L9–L12), in chronological order. Every lesson is open at any time. Each has *Learn* (goal, key ideas, an example and a clean reference such as “Drozdek (2010), Section 8.3.1, All-to-all shortest path problem, pages 390–392”), *Watch* (the lesson's video, where it has one), *Try it* (an activity) and a *Quiz*.
 
 | Lesson | Try it |
 |---|---|
@@ -63,9 +63,21 @@ These are good for a classroom server but are **not** a security boundary. For a
 | L7 Introduction to DFS | DFS step by step with its stack, plus the queue-vs-stack checkpoint |
 | L8 Traversal walkthrough | Animated scenario: Naledi explores the campus from the Library (Play, Pause, speed, step, “predict the next building”) |
 | L9–L12 Transitive closure | R⁺ prediction, Warshall’s k-by-k trace, repeated DFS vs Warshall, module prerequisites |
-| (Bonus) Exam | Exam which tests all covered content |
 
-Transitive closure is **recommended** once a learner reaches Level 2 (Rookie, 200 points). It is never enforced.
+**Lesson videos.** Videos play inside their lessons (privacy-enhanced `youtube-nocookie.com` embeds) and are still all listed on the Videos tab, which shows the lessons each belongs to:
+
+| Video | Lessons |
+|---|---|
+| https://www.youtube.com/watch?v=-VgHk7UMPP4 | L2 Introduction to graphs |
+| https://www.youtube.com/watch?v=zaBhtODEL0w | L6 Introduction to BFS, L7 Introduction to DFS |
+| https://www.youtube.com/watch?v=sioNsVeSbQo | L9 Transitive closure as a relation |
+| https://www.youtube.com/watch?v=4jyESQDrpls | Videos tab only |
+
+To place a video in a lesson, add its id to that lesson's `videos` list in `shared/units.mjs`.
+
+**Bonus quest: the final exam.** Two questions from every lesson (24 in all, L1 to L12 in order, core and challenge tiers), mixing all four question kinds. +10 points per right answer the first time and +100 for 80% or more; the result shows a score per lesson with links back. It is recommended once all twelve lessons are done, but it is never locked. Results are saved as checks with unit `EXAM` and shown on the lecturer dashboard.
+
+**Renumbering.** The closure lessons used to be U5–U8. Old links redirect, and saved progress, reward keys, checks and chats are migrated to L9–L12 when the server loads its data.
 
 **Quizzes.** Five questions per attempt with instant feedback: multiple choice, fill in the blank, put in order (drag and drop) and sort into boxes (drag and drop). Drag and drop also works with buttons (↑ ↓, or tap a card then a box). Each question has a tier (warm-up, core, challenge) and the mix gets harder as the level rises.
 
@@ -75,7 +87,7 @@ Transitive closure is **recommended** once a learner reaches Level 2 (Rookie, 20
 - 17 colourful badges, streaks, and chatbot notifications after every answer (“Well done! +15 points” / “Try again, you’ll get it this time 💪”).
 - Home shows the level card, badges, a mini roadmap and tiles. The **Roadmap** page gives feedback on every stop (best quiz score, strong / good / worth a revisit, points earned).
 
-**Coding questions (P1–P9).** They open once the 8 core lessons are done.
+**Coding questions (P1–P9).** They open once Part 1 (L1–L8) is done.
 - P1–P2 graph creation on a matrix and on linked lists: add and remove nodes (`removeVertex` renumbers later vertices) and edges.
 - P3 BFS order and P4 DFS order.
 - P5–P9 transitive closure: repeated DFS, Warshall’s, Warshall’s trace, prerequisites, find the bug.
@@ -88,7 +100,7 @@ Transitive closure is **recommended** once a learner reaches Level 2 (Rookie, 20
 
 **Languages.** Settings (and the start screen) offer all 11 official written languages: English, isiZulu, isiXhosa, Sepedi, Afrikaans, Setswana, Sesotho, Xitsonga, siSwati, Tshivenḓa and isiNdebele. Menus, buttons, feedback, chatbot messages, levels and lesson text are translated. Quiz questions, code and knowledge-base answers stay in English. **The non-English text is a draft** and should be reviewed by first-language speakers before release (`client/src/i18n/locales/*.ts`; any missing key falls back to English).
 
-**Also:** Build a graph (with BFS/DFS orders in the Props tab), a Videos page with four YouTube thumbnails, read-aloud, larger text and reduced motion.
+**Also:** Build a graph (with BFS/DFS orders in the Props tab), a Videos page listing every video and the lessons that use it, read-aloud, larger text and reduced motion.
 
 ### Accessibility
 
@@ -97,27 +109,35 @@ Transitive closure is **recommended** once a learner reaches Level 2 (Rookie, 20
 - The walkthrough animation only plays when you press Play; every trace can be stepped by hand.
 - Drag-and-drop questions have button alternatives. Colour is never the only cue (✓, ✗, shapes and words).
 
-## CS2023 coverage (AL-Foundational)
+## CS2023 coverage (Kumar et al., 2024, pages 88–90)
 
-| Code | Outcome | Lessons | Problems |
+The COS750 specification asks for one data structure (not a 1D array or linked list) and one core algorithm on it. This app’s pair is the **Graph** (AL-Foundational CS core 8) and **transitive closure with Warshall’s algorithm** (KA core 15a). BFS and DFS are taught as its building blocks: CS2023 lists them under uninformed search (CS core 11c), not as graph algorithms.
+
+| Code | CS2023 item | Lessons | Problems |
 |---|---|---|---|
-| CS-ARR | Arrays, single and multi-dimensional (CS core) | L1, L5 | P1 |
-| CS-ADT | Abstract data types, e.g. List (CS core) | L1, L5 | P1, P2 |
-| CS-GRAPH | Graphs: (un)directed, (a)cyclic, (un)connected, (un)weighted (CS core) | L2, L3, L4 | |
-| CS-REP | Adjacency list and matrix representations (CS core) | L5 | P1, P2 |
-| CS-BFS | Breadth-first search (CS core) | L6, L8 | P3 |
-| CS-DFS | Depth-first search: connectivity, reachability (CS core) | L7, L8, U5, U7 | P4, P5 |
-| KA-TC | Transitive closure, Warshall’s algorithm (KA core) | U5–U8 | P5–P9 |
-| KA-CMP | Choosing between algorithms by their cost (KA core) | U7 | P5 |
+| CS-ADT | AL-Foundational CS core 1: ADTs and their operations | L1, L5 | P1, P2 |
+| CS-ARR | CS core 2b: single vs multidimensional arrays | L1, L5 | P1 |
+| CS-LIST | CS core 4: linked lists | L1, L5 | P2 |
+| CS-GRAPH | CS core 8: graphs ([un]directed, [a]cyclic, [un]connected, [un]weighted) | L2, L3, L4 | |
+| CS-REP | CS core 8a: adjacency list vs matrix | L5 | P1, P2 |
+| CS-BFS, CS-DFS | CS core 11c: uninformed breadth- and depth-first search | L6, L7, L8, L11 | P3, P4, P5 |
+| KA-TC | KA core 15a: transitive closure (Warshall’s) | L9–L12 | P5–P9 |
+| ILO-CS1 | Outcome CS 1a–b: definition, representations, ADT operations step by step | L2, L3, L5 | P1, P2 |
+| ILO-CS2 | Outcome CS 2: each algorithm step by step | L6, L7, L8 | P3, P4 |
+| ILO-CS4 | Outcome CS 4: several solutions, choose the best fit | L11, L12 | P5, P8 |
+| ILO-CS6 | Outcome CS 6: factors beyond efficiency | L11 | |
+| ILO-KA8 | Outcome KA 8a–b: KA-core algorithm explained step by step | L9, L10 | P6, P7, P9 |
+| STR-DP | AL-Strategies CS core 1e(iv): dynamic programming (Warshall) | L10 | P6, P9 |
+| STR-REC | AL-Strategies CS core 3: iteration vs recursion | L7 | P4 |
 
 ## Project structure
 
 ```
 shared/            ES modules used by both the server and the app
   graph-core.mjs   graph engine: representations, properties, DFS/BFS traces, Warshall, text format
-  units.mjs        lessons L1–L8 and U5–U8, CS2023 outcomes, references, levels, points
+  units.mjs        lessons L1–L12 (with their videos), the final exam, CS2023 outcomes, references, levels, points
   graph-helper.mjs Graph Helper: graph engine answers, knowledge-base cards, fallback
-  videos.mjs       the four YouTube links
+  videos.mjs       the YouTube links and which lessons use them
 server/src
   app.js           REST API (guest start, optional sign-in, staff code, progress, checks, problems, chat, dashboard)
   problems.js      P1–P9 with starters, harnesses, test generators and hints
@@ -126,7 +146,7 @@ server/src
 server/solutions   model solutions shown after a wrong submission (also used by the tests)
 client/src
   pages/           Welcome, Home, LessonPage (+ lessonWidgets, unitWidgets), Roadmap, Tests (coding),
-                   People (Student and Lecturer pages), Dashboard, BuildGraph, Videos, Info (settings, lesson plan)
+                   People (Student and Lecturer pages), Dashboard, BuildGraph, Videos, Exam (final exam), Info (settings, lesson plan)
   components/      Quiz, GraphCanvas, HelperChat, Layout, ui
   state/           AppContext (session, progress, settings), rewards (points, levels, badges, pop-ups)
   lib/quizBank.ts  question banks: multiple choice, fill in the blank, order, sort
