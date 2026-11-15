@@ -10,8 +10,8 @@ Website Link:  https://software-disciples-cos-212-app-prototype.onrender.com
 **Team Members**
 | Name and Surname | Student Number |
 |---|---|
-| Khumo Rametse| u21685062 |
-|              |           |
+| Khumo Rametse | u21685062 |
+| Edwin Nyaungwa| u23675022 |
 |              |           |
 |              |           |
 |              |           |
