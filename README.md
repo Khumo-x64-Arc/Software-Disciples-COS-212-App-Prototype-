@@ -12,7 +12,7 @@ Website Link:  https://software-disciples-cos-212-app-prototype.onrender.com
 |---|---|
 | Khumo Rametse | u21685062 |
 | Edwin Nyaungwa| u23675022 |
-|              |           |
+| Thabang Kgosiemang | u20791535 |
 |              |           |
 |              |           |
 |              |           |
