@@ -73,7 +73,7 @@ export const UNITS = LESSONS;
 export const PART1 = LESSONS.filter(l => l.track === 'graphs');
 export const PART2 = LESSONS.filter(l => l.track === 'closure');
 /** The coding questions open once Part 1 (L1–L8) is done. */
-export const CODING_AFTER = PART1;
+export const CODING_AFTER = [];
 
 /** Lesson ids before the renumbering (the closure lessons were U5–U8). */
 export const LEGACY_IDS = { U5: 'L9', U6: 'L10', U7: 'L11', U8: 'L12' };
